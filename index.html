@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>上海大学理学院数学系｜Department of Mathematics</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #003b7a;
+      --blue2: #0d5cad;
+      --ink: #111827;
+      --muted: #5f6f86;
+      --light: #f4f7fb;
+      --line: #d9e2ef;
+      --gold: #b78b37;
+      --red: #a31f34;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: #f7f9fc;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    .topbar {
+      background: #0b1220;
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+      letter-spacing: .02em;
+    }
+
+    .topbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 9px 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .nav {
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 17px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 138px;
+      height: auto;
+      display: block;
+    }
+
+    .brand-text {
+      border-left: 1px solid var(--line);
+      padding-left: 14px;
+      line-height: 1.2;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--blue);
+      letter-spacing: -.03em;
+      white-space: nowrap;
+    }
+
+    .brand-sub {
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .links {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .links a {
+      text-decoration: none;
+      color: #344054;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 9px 12px;
+      border-radius: 8px;
+      transition: .2s ease;
+    }
+
+    .links a:hover {
+      background: #eef4fb;
+      color: var(--blue);
+    }
+
+    .hero {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 34px 24px 0;
+      display: grid;
+      grid-template-columns: 1.04fr .96fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: clamp(34px, 5vw, 68px);
+      min-height: 620px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "∫  ∑  ∂  ∇  π  λ  Ω";
+      position: absolute;
+      right: -90px;
+      bottom: -25px;
+      font-family: Georgia, serif;
+      font-size: 112px;
+      color: rgba(0,59,122,.055);
+      white-space: nowrap;
+      transform: rotate(-8deg);
+    }
+
+    .label {
+      color: var(--red);
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: .97;
+      letter-spacing: -.075em;
+      color: #0b1220;
+      margin-bottom: 26px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .blue { color: var(--blue); }
+
+    .lead {
+      font-size: 20px;
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; position: relative; z-index: 1; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      border: 0;
+      padding: 13px 18px;
+      font-weight: 850;
+      border-radius: 4px;
+      transition: .2s ease;
+      font-size: 15px;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .primary { background: var(--blue); color: #fff; }
+    .secondary { background: #eef4fb; color: var(--blue); border: 1px solid var(--line); }
+
+    .hero-media {
+      min-height: 620px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 620px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.02) contrast(1.02);
+    }
+
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(11,18,32,.03), rgba(11,18,32,.72));
+    }
+
+    .caption {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 28px;
+      z-index: 2;
+      color: #fff;
+      border-left: 4px solid var(--red);
+      padding: 18px 20px;
+      background: rgba(11,18,32,.42);
+      backdrop-filter: blur(14px);
+    }
+
+    .caption b { display: block; font-size: 24px; letter-spacing: -.04em; margin-bottom: 6px; }
+    .caption span { color: rgba(255,255,255,.78); font-size: 14px; }
+
+    .quick-grid {
+      max-width: 1280px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .quick-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 24px;
+      min-height: 150px;
+      transition: .22s ease;
+    }
+
+    .quick-card:hover { transform: translateY(-4px); box-shadow: 0 18px 44px rgba(23,50,90,.10); }
+    .quick-card b { display: block; color: var(--blue); font-size: 26px; letter-spacing: -.05em; margin-bottom: 8px; }
+    .quick-card span { color: var(--muted); font-size: 14px; }
+
+    .section {
+      max-width: 1280px;
+      margin: 72px auto 0;
+      padding: 0 24px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: .72fr 1fr;
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 26px;
+      border-top: 2px solid #0b1220;
+      padding-top: 22px;
+    }
+
+    h2 {
+      font-size: clamp(34px, 4.5vw, 58px);
+      line-height: 1;
+      letter-spacing: -.065em;
+      color: #0b1220;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 780px;
+    }
+
+    .mit-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .image-block {
+      background: #fff;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      min-height: 470px;
+      position: relative;
+    }
+
+    .image-block img { width: 100%; height: 100%; min-height: 470px; object-fit: cover; display: block; }
+
+    .image-note {
+      position: absolute;
+      left: 22px;
+      bottom: 22px;
+      right: 22px;
+      background: rgba(255,255,255,.88);
+      border-left: 4px solid var(--blue);
+      padding: 18px;
+      backdrop-filter: blur(12px);
+    }
+
+    .image-note b { display: block; color: var(--ink); margin-bottom: 4px; }
+    .image-note span { color: var(--muted); font-size: 14px; }
+
+    .text-stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .feature {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 28px;
+      min-height: 146px;
+      transition: .22s ease;
+    }
+
+    .feature:hover { transform: translateX(6px); border-color: rgba(0,59,122,.32); }
+    .feature small { color: var(--red); font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
+    .feature h3 { margin: 8px 0 8px; color: #0b1220; font-size: 24px; letter-spacing: -.04em; }
+    .feature p { color: var(--muted); font-size: 15.5px; }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: .88fr 1.12fr;
+      gap: 22px;
+    }
+
+    .panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 34px;
+    }
+
+    .panel h3 { font-size: 34px; line-height: 1.08; letter-spacing: -.055em; color: #0b1220; margin-bottom: 14px; }
+    .panel p { color: var(--muted); font-size: 16px; }
+
+    .course-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .course { background: #f4f8fd; border: 1px solid var(--line); padding: 15px 16px; font-weight: 800; color: #24405f; }
+
+    .news-layout {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+    }
+
+    .news-list {
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 20px;
+      padding: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .news-item:last-child { border-bottom: 0; }
+    .date {
+      background: #0b1220;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 74px;
+      font-weight: 950;
+      line-height: 1.05;
+    }
+    .date small { opacity: .7; font-size: 12px; margin-top: 4px; }
+    .news-item h3 { font-size: 21px; letter-spacing: -.035em; margin-bottom: 6px; color: #0b1220; }
+    .news-item p { color: var(--muted); font-size: 15px; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .gallery figure {
+      background: #fff;
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery figcaption {
+      padding: 13px 15px;
+      font-size: 14px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    .photo-strip {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr 1fr;
+      gap: 14px;
+    }
+
+    .strip-img {
+      position: relative;
+      min-height: 290px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .strip-img.large { min-height: 390px; grid-row: span 2; }
+    .strip-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+    .strip-img span {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      background: rgba(11,18,32,.62);
+      color: white;
+      padding: 9px 12px;
+      font-size: 13px;
+      backdrop-filter: blur(10px);
+    }
+
+    .quote {
+      background: #0b1220;
+      color: #fff;
+      padding: 54px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote::before {
+      content: "∑";
+      position: absolute;
+      left: 24px;
+      top: -48px;
+      font-family: Georgia, serif;
+      font-size: 220px;
+      color: rgba(255,255,255,.055);
+    }
+
+    .quote p {
+      position: relative;
+      max-width: 960px;
+      font-size: clamp(28px, 4vw, 52px);
+      line-height: 1.18;
+      letter-spacing: -.06em;
+      margin-bottom: 18px;
+    }
+
+    .quote span { position: relative; color: rgba(255,255,255,.68); }
+
+    footer {
+      max-width: 1280px;
+      margin: 44px auto 0;
+      padding: 24px;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      .hero, .mit-grid, .program-grid, .news-layout, .section-head { grid-template-columns: 1fr; }
+      .quick-grid { grid-template-columns: repeat(2, 1fr); }
+      .photo-strip { grid-template-columns: 1fr 1fr; }
+      .links { display: none; }
+      .hero-copy, .hero-media, .hero-media img { min-height: auto; }
+      .hero-media img { height: 470px; }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner, .nav-inner, .hero, .quick-grid, .section, footer { padding-left: 16px; padding-right: 16px; }
+      .brand img { width: 104px; }
+      .brand-text { display: none; }
+      .quick-grid, .course-list, .photo-strip { grid-template-columns: 1fr; }
+      .hero-copy, .panel, .quote { padding: 30px; }
+      .hero-media img { height: 340px; }
+      .news-item { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <span>Shanghai University · College of Sciences</span>
+      <span>Department of Mathematics</span>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="https://www.shu.edu.cn/images/logo.svg" alt="上海大学校徽与校名" />
+        <div class="brand-text">
+          <div class="brand-title">理学院数学系</div>
+          <div class="brand-sub">Department of Mathematics</div>
+        </div>
+      </div>
+      <div class="links">
+        <a href="#about">系部概览</a>
+        <a href="#program">培养体系</a>
+        <a href="#research">科研动态</a>
+        <a href="#campus">校园图景</a>
+        <a href="#future">未来发展</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="label">Mathematics · Research · Future</div>
+      <h1>以数学之美，<br><span class="blue">启未来之门</span></h1>
+      <p class="lead">上海大学理学院数学系立足数学基础，面向科学前沿与产业需求，致力于培养具有扎实数学功底、严密逻辑思维、建模计算能力与创新意识的复合型人才。</p>
+      <div class="actions">
+        <a class="btn primary" href="#about">Explore the Department →</a>
+        <a class="btn secondary" href="#research">View Research & News</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="https://www.shu.edu.cn/images/24/04/03/1rs7a13737/29.png" alt="上海大学宝山校区校园风景" />
+      <div class="caption">
+        <b>扎根上海大学，面向数学前沿</b>
+        <span>从抽象理论到现实应用，从严密证明到智能计算，数学连接科学、工程、金融与人工智能。</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="quick-grid">
+    <div class="quick-card"><b>Foundation</b><span>数学分析、高等代数、几何、概率统计等核心训练</span></div>
+    <div class="quick-card"><b>Research</b><span>Seminar、学术论坛、科研项目与学术论文训练</span></div>
+    <div class="quick-card"><b>Computation</b><span>数值计算、建模、数据分析与智能计算方向</span></div>
+    <div class="quick-card"><b>Future</b><span>升学深造、基础研究、数据科学、金融与算法应用</span></div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="section-head">
+      <h2>在这里，数学不只是公式</h2>
+      <p class="section-desc">数学系强调“基础理论 + 计算实践 + 学科交叉”的培养思路。学生不仅学习严谨的数学证明，也通过建模、编程、数据分析与科研训练理解数学如何进入真实世界。</p>
+    </div>
+    <div class="mit-grid">
+      <div class="image-block">
+        <img src="https://www.shu.edu.cn/images/24/04/03/1rs7a13737/25.jpg" alt="上海大学校园建筑" />
+        <div class="image-note"><b>开放的校园与学术空间</b><span>在综合性大学环境中，数学训练与科学、工程、人文场景自然连接。</span></div>
+      </div>
+      <div class="text-stack">
+        <div class="feature"><small>01 Core</small><h3>严密的基础训练</h3><p>以数学分析、高等代数、解析几何、常微分方程、概率论等课程为基础，培养清晰、严谨、系统的数学思维。</p></div>
+        <div class="feature"><small>02 Interdisciplinary</small><h3>开放的交叉视野</h3><p>面向数据科学、金融工程、人工智能、科学计算等方向，鼓励学生将数学方法应用于多元场景。</p></div>
+        <div class="feature"><small>03 Academic Growth</small><h3>持续的成长空间</h3><p>通过课程学习、学术讨论、科研项目与竞赛实践，逐步形成独立思考、问题建模与创新研究能力。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="program">
+    <div class="section-head">
+      <h2>从数学基础到创新应用</h2>
+      <p class="section-desc">数学学习是一条层层递进的路径：先建立抽象思维与逻辑表达，再进入模型、算法、计算与跨学科应用。</p>
+    </div>
+    <div class="program-grid">
+      <div class="panel">
+        <h3>培养关键词</h3>
+        <p>严谨、抽象、建模、计算、创新。数学系注重培养学生面对复杂问题时的结构化思考能力，以及将理论转化为方法的能力。</p>
+      </div>
+      <div class="panel">
+        <div class="course-list">
+          <div class="course">数学分析</div>
+          <div class="course">高等代数</div>
+          <div class="course">解析几何</div>
+          <div class="course">常微分方程</div>
+          <div class="course">概率论与数理统计</div>
+          <div class="course">实变函数与泛函分析</div>
+          <div class="course">数值计算与科学计算</div>
+          <div class="course">数学建模与数据分析</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="research">
+    <div class="section-head">
+      <h2>Research & News</h2>
+      <p class="section-desc">参考 MIT 数学系网站常见的“News + Events + Research Areas”信息结构，这里把数学系动态、学术交流和科研训练整合成更清晰的展示区。</p>
+    </div>
+    <div class="news-layout">
+      <div class="news-list">
+        <article class="news-item">
+          <div class="date">2026<small>Mar</small></div>
+          <div><h3>计算数学与优化方向研究成果</h3><p>数学系英文主页展示了计算数学、优化与前沿论文相关动态，体现科研与学术发表导向。</p></div>
+        </article>
+        <article class="news-item">
+          <div class="date">2026<small>Feb</small></div>
+          <div><h3>应用数学、建模与智能计算国际学术会议</h3><p>围绕应用数学、数学建模、智能计算等方向，连接理论方法与现实问题。</p></div>
+        </article>
+        <article class="news-item">
+          <div class="date">Seminar<small>Weekly</small></div>
+          <div><h3>数学 Seminar 与学术交流</h3><p>通过常态化报告、论坛和会议，帮助学生接触分析、代数、几何、概率统计与计算数学等方向。</p></div>
+        </article>
+      </div>
+      <div class="gallery">
+        <figure><img src="https://math.shu.edu.cn/__local/D/91/5B/9C6D0B99D4FFA798C9FEFC16486_CE83C9F6_57384.png" alt="上海大学数学学术会议" /><figcaption>数学学术会议与交流活动</figcaption></figure>
+        <figure><img src="https://www.shu.edu.cn/images/24/04/03/1rs7a13737/22.jpg" alt="上海大学校园建筑" /><figcaption>校园学习与科研空间</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="campus">
+    <div class="section-head">
+      <h2>Campus Gallery</h2>
+      <p class="section-desc">用更丰富的校园与学术图片建立视觉记忆点，避免单纯文字堆叠，让宣传页更接近国际高校院系主页的观感。</p>
+    </div>
+    <div class="photo-strip">
+      <div class="strip-img large"><img src="https://www.shu.edu.cn/images/24/04/03/1rs7a13737/29.png" alt="上海大学校园湖景" /><span>Baoshan Campus</span></div>
+      <div class="strip-img"><img src="https://www.shu.edu.cn/images/24/04/03/1rs7a13737/25.jpg" alt="上海大学校园建筑" /><span>Academic Space</span></div>
+      <div class="strip-img"><img src="https://math.shu.edu.cn/__local/D/91/5B/9C6D0B99D4FFA798C9FEFC16486_CE83C9F6_57384.png" alt="数学会议合影" /><span>Mathematics Conference</span></div>
+      <div class="strip-img"><img src="https://www.shu.edu.cn/images/24/04/03/1rs7a13737/22.jpg" alt="上海大学校园道路" /><span>Campus Life</span></div>
+      <div class="strip-img"><img src="https://www.shu.edu.cn/images/24/04/03/1rs7a13737/24.jpg" alt="上海大学校园风景" /><span>Research Environment</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="future">
+    <div class="section-head">
+      <h2>数学，是通往更多可能性的语言</h2>
+      <p class="section-desc">数学专业学生可在继续深造、基础研究、教育、金融、数据科学、人工智能、软件与算法等方向发展。扎实的数学训练，使学生具备跨领域迁移和持续学习的能力。</p>
+    </div>
+    <div class="quote">
+      <p>以严谨求真，以抽象见深，以计算通达，以创新面向未来。</p>
+      <span>上海大学理学院数学系 · Department of Mathematics</span>
+    </div>
+  </section>
+
+  <footer>
+    <span>上海大学理学院数学系宣传页 · Academic Department Showcase</span>
+    <span>Visual reference: official SHU / SHU Math public pages</span>
+  </footer>
+</body>
+</html>
